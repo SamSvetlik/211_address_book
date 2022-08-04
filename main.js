@@ -14,13 +14,27 @@ const listUsers = () => {
     arrayOfUsers.forEach((user) =>{
         let li = document.createElement("li")
         let name = user.name.first + " " + user.name.last
-        let face = document.createElement("img")
-        face.src = user.picture.medium
-        // let details = document.createElement("button")
-        // stuck adding a toggle for additional details - class?
         li.innerText = name
         unorderedList.appendChild(li)
+
+        let face = document.createElement("img")
+        face.src = user.picture.medium
         unorderedList.appendChild(face)
+
+        let detailsBtn = document.createElement("button")
+        detailsBtn.innerText = "Show more details"
+        detailsBtn.addEventListener("click",() => {
+            let h3 = document.createElement("h3")
+            let details = "Nationality: " + user.nat + ", Age: " + user.dob.age + ", Email: " + user.email
+            h3.innerText = details
+            detailsBtn.innerText = ""
+            detailsBtn.appendChild(h3)    
+            // Button turns into additional details
+            // It's kinda like a dropdown menu
+            // Janky but functional
+            })
+        unorderedList.appendChild(detailsBtn)
+        
     } )
 }
 const getFirstUsers = () => {
